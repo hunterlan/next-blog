@@ -6,8 +6,8 @@ export default function NewsLayout({children,}: {
 }) {
     return (
         <>
-            <header className='bg-white'>
-                <nav className="mx-auto flex justify-between p-6 lg:px-8" aria-label="Global">
+            <header className='bg-white dark:bg-gray-700'>
+                <nav className="mx-auto flex justify-between p-6 lg:px-8 items-center" aria-label="Global">
                     <p className='font-bold'>Powered by <Link href='https://newsdata.io/'>NewsData.io</Link></p>
                     <Search></Search>
                     <Link href={'/logout'}><button>Logout</button></Link>

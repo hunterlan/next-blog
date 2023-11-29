@@ -34,16 +34,18 @@ export default async function News({searchParams}: {searchParams?: {
     news = await newsDataService.fetchNews(apiKeyCookie!.value, query, page);
 
     return news.results.map((article, index) => {
-        return <div key={index} className="m-2 rounded overflow-hidden shadow-lg max-h-fit">
-            <Link href={article.link}>
-                <img className="w-full" src={article.image_url} alt='news image'/>
-                <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{article.title}</div>
-                    <div>
-                        <p className="text-gray-700 text-base">{article.description != null && GetDescription(article.description)}</p>
+        return <div key={index} className="m-2 rounded overflow-hidden shadow-lg max-h-fit flex flex-col dark:bg-zinc-900">
+            <Link href={article.link} className="h-[100%] flex flex-wrap">
+                <div className='flex flex-wrap flex-grow'>
+                    <img className="w-full" src={article.image_url} alt='news image'/>
+                    <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">{article.title}</div>
+                        <div>
+                            <p className="text-gray-700 text-base">{article.description != null && GetDescription(article.description)}</p>
+                        </div>
                     </div>
                 </div>
-                <div className="flex px-6 py-4">
+                <div className="flex flex-grow px-6 py-4 justify-between items-end">
                     <div>{article.pubDate}</div>
                     <div>{article.creator != null && article.creator.join(', ')}</div>
                 </div>
