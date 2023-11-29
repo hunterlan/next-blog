@@ -6,7 +6,7 @@ export class CookiesService {
         this.cookieStore.set(name, value);
     }
 
-    get(name: string) {
+    getCookie(name: string) {
         const cookie = this.cookieStore.get(name);
         if (cookie == null) {
             throw Error('Cookie with given name is not exist');
@@ -15,17 +15,8 @@ export class CookiesService {
         return cookie;
     }
 
-    getValue(name: string) {
-        const cookie = this.cookieStore.get(name);
-        if (cookie == null) {
-            throw Error('Cookie with given name is not exist');
-        }
-
-        return cookie.value;
-    }
-
     isCookieExist(name: string) {
-        return this.cookieStore.get(name) != null;
+        return this.cookieStore.get(name) !== undefined;
     }
 
     delete(name: string) {

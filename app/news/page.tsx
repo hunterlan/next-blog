@@ -26,7 +26,7 @@ export default async function News() {
     if (!cookieService.isCookieExist('apiKey')) {
         redirect('/login');
     } else {
-        apiKeyCookie = cookieService.get('apiKey');
+        apiKeyCookie = cookieService.getCookie('apiKey');
     }
 
     const newsDataService = new NewsDataService();
