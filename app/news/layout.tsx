@@ -1,5 +1,4 @@
 import Link from "next/link";
-import {cookies} from "next/headers";
 
 export default function NewsLayout({children,}: {
     children: React.ReactNode
@@ -8,8 +7,8 @@ export default function NewsLayout({children,}: {
         <>
             <header className='bg-white'>
                 <nav className="mx-auto flex justify-between p-6 lg:px-8" aria-label="Global">
-                    <p className='font-bold'>Powered by <Link href=''>NewsData.io</Link></p>
-                    <Link href='/logout'><button>Logout</button></Link>
+                    <p className='font-bold'>Powered by <Link href='https://newsdata.io/'>NewsData.io</Link></p>
+                    <Link href={'/logout'}><button>Logout</button></Link>
                 </nav>
             </header>
             <section className="grid sm:grid-cols-1 md:grid-cols-2 p-4 lg:px-6">{children}</section>
