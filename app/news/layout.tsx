@@ -10,6 +10,7 @@ export default function NewsLayout({children,}: {
                 <nav className="mx-auto flex justify-between p-6 lg:px-8 items-center" aria-label="Global">
                     <p className='font-bold'>Powered by <Link href='https://newsdata.io/'>NewsData.io</Link></p>
                     <Search></Search>
+                    <a href='' className='flex justify-center pr-3' id='next-page-link'>Next page</a>
                     <Link href={'/logout'}><button>Logout</button></Link>
                 </nav>
             </header>

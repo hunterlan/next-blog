@@ -3,6 +3,8 @@ import {redirect} from "next/navigation";
 import {NewsDataService} from "@/app/services/newsdata/news-data.service";
 import Link from "next/link";
 import {CookiesService} from "@/app/services/cookies/cookies.service";
+import Script from "next/script";
+import ScriptInsert from "@/app/ui/script-insert";
 
 function GetDescription(description: string) {
     if (description.length > 500) {
@@ -17,6 +19,7 @@ export default async function News({searchParams}: {searchParams?: {
     page?: string;
     };
 }) {
+    let script = '';
     const query = searchParams?.q || '';
     const page = searchParams?.page || '';
     const cookieService = new CookiesService();
@@ -35,6 +38,7 @@ export default async function News({searchParams}: {searchParams?: {
 
     return news.results.map((article, index) => {
         return <div key={index} className="m-2 rounded overflow-hidden shadow-lg max-h-fit flex flex-col dark:bg-zinc-900">
+            <ScriptInsert page={news.nextPage}></ScriptInsert>
             <Link href={article.link} className="h-[100%] flex flex-wrap">
                 <div className='flex flex-wrap flex-grow'>
                     <img className="w-full" src={article.image_url} alt='news image'/>

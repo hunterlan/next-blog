@@ -2,6 +2,7 @@
 
 import {useDebouncedCallback} from "use-debounce";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import Link from "next/link";
 
 export default function Search() {
     const searchParams = useSearchParams();
