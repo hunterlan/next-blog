@@ -2,7 +2,6 @@ import {News} from "@/app/models/news.interface";
 import {redirect} from "next/navigation";
 import {NewsDataService} from "@/app/services/newsdata/news-data.service";
 import Link from "next/link";
-import {cookies} from "next/headers";
 import {CookiesService} from "@/app/services/cookies/cookies.service";
 
 function GetDescription(description: string) {
@@ -13,15 +12,15 @@ function GetDescription(description: string) {
     }
 }
 
-export default async function News() {
+export default async function News({searchParams}: {searchParams?: {
+    q?: string;
+    page?: string;
+    };
+}) {
+    const query = searchParams?.q || '';
+    const page = searchParams?.page || '';
     const cookieService = new CookiesService();
     let apiKeyCookie;
-    /*const cookieStore = cookies();
-    const apiKeyCookie = cookieStore.get('apiKey');
-    if (apiKeyCookie == null) {
-        redirect('/login');
-    }*/
-
 
     if (!cookieService.isCookieExist('apiKey')) {
         redirect('/login');
@@ -32,7 +31,7 @@ export default async function News() {
     const newsDataService = new NewsDataService();
     let news: News;
 
-    news = await newsDataService.fetchNews(apiKeyCookie!.value);
+    news = await newsDataService.fetchNews(apiKeyCookie!.value, query, page);
 
     return news.results.map((article, index) => {
         return <div key={index} className="m-2 rounded overflow-hidden shadow-lg max-h-fit">

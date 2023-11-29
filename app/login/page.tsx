@@ -12,7 +12,8 @@ export default function Login() {
     async function onSubmit(formData: FormData) {
         'use server'
         const apiKey = formData.get('apiKey') as string;
-        cookieService.create('apiKey', apiKey);
+
+        cookies().set('apiKey', apiKey);
         redirect('/news');
     }
 

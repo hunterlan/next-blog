@@ -1,7 +1,13 @@
 export class NewsDataService {
     API_URL = 'https://newsdata.io/api/1/news';
-    async fetchNews(apiKey: string) {
+    async fetchNews(apiKey: string, query = '', page = '') {
         let finalUrl = this.API_URL + '?language=en';
+        if (page !== '') {
+            finalUrl += '&page=' + page;
+        }
+        if (query !== '') {
+            finalUrl += '&q=' + query;
+        }
 
         const response = await fetch(finalUrl, {
             method: 'GET',

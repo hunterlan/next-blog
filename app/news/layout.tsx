@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Search from "@/app/ui/search";
 
 export default function NewsLayout({children,}: {
     children: React.ReactNode
@@ -8,6 +9,7 @@ export default function NewsLayout({children,}: {
             <header className='bg-white'>
                 <nav className="mx-auto flex justify-between p-6 lg:px-8" aria-label="Global">
                     <p className='font-bold'>Powered by <Link href='https://newsdata.io/'>NewsData.io</Link></p>
+                    <Search></Search>
                     <Link href={'/logout'}><button>Logout</button></Link>
                 </nav>
             </header>
